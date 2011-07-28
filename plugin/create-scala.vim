@@ -39,11 +39,11 @@ function! MakeScalaFile()
         call append("0", "package " . p)
     endif
 
-    "norm G
-    "call append(".", "class " . class . " {")
+    norm G
+    call append(".", "class " . class . " {")
 
-    "norm G
-    "call append(".", "} /// end of " . class)
+    norm G
+    call append(".", "} /// end of " . class)
 
     call append(".", "")
 
