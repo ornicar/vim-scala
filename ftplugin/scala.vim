@@ -4,11 +4,13 @@ if exists("b:did_ftplugin")
 endif
 let b:did_ftplugin = 1
 
-setlocal textwidth=140
 setlocal shiftwidth=2
 setlocal softtabstop=2
 setlocal expandtab
 setlocal formatoptions=tcqr
 
+" Higlight the 80's line
+setlocal colorcolumn=80
+
 " Operator notation: transforms a.b(c) to a b c
-nmap <leader>s. f.r<space>f(ds(i <esc>
+nmap <buffer> <leader>s. f.r<space>f(ds(i <esc>
