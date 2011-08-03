@@ -10,7 +10,7 @@ setlocal expandtab
 setlocal formatoptions=tcqr
 
 " Higlight the 80's line
-setlocal colorcolumn=80
+"setlocal colorcolumn=80
 
 " Operator notation: transforms a.b(c) to a b c
 nmap <buffer> <leader>s. f.r<space>f(ds(i <esc>
