@@ -43,7 +43,7 @@ function! MakeScalaFile()
     call append(".", "class " . class . " {")
 
     norm G
-    call append(".", "} /// end of " . class)
+    call append(".", "}")
 
     call append(".", "")
 
