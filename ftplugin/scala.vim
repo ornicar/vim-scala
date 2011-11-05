@@ -14,3 +14,7 @@ setlocal formatoptions=tcqr
 
 " Operator notation: transforms a.b(c) to a b c
 nmap <buffer> <leader>s. f.r<space>f(ds(i <esc>
+
+" Triple quotes: transforms "abc" to """abc"""
+"abc"
+nmap <buffer> <leader>s" ysi""lysi""
