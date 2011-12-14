@@ -68,7 +68,7 @@ syn keyword scalaObject object nextgroup=scalaClassName skipwhite
 syn keyword scalaTrait trait nextgroup=scalaClassName skipwhite
 syn match scalaDefName "[^ =:;([]\+" contained nextgroup=scalaDefSpecializer skipwhite
 syn match scalaValName "[^ =:;([]\+" contained
-syn match scalaVarName "[^ =:;([]\+" contained 
+syn match scalaVarName "[^ =:;([]\+" contained
 syn match scalaClassName "[^ =:;(\[]\+" contained nextgroup=scalaClassSpecializer skipwhite
 syn region scalaDefSpecializer start="\[" end="\]" contained contains=scalaDefSpecializer
 syn region scalaClassSpecializer start="\[" end="\]" contained contains=scalaClassSpecializer
@@ -177,7 +177,7 @@ hi link scalaDefName Function
 hi link scalaDefSpecializer Function
 hi link scalaClassName Special
 hi link scalaClassSpecializer Special
-hi link scalaConstructor Special
+hi link scalaConstructor Function
 hi link scalaConstructorSpecializer scalaConstructor
 
 let b:current_syntax = "scala"
