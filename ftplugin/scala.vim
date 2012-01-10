@@ -8,13 +8,9 @@ setlocal shiftwidth=2
 setlocal softtabstop=2
 setlocal expandtab
 setlocal formatoptions=tcqr
-
-" Higlight the 80's line
-"setlocal colorcolumn=80
-
+"
 " Operator notation: transforms a.b(c) to a b c
 nmap <buffer> <leader>s. f.r<space>f(ds(i <esc>
 
 " Triple quotes: transforms "abc" to """abc"""
-"abc"
 nmap <buffer> <leader>s" ysi""lysi""

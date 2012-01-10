@@ -182,10 +182,10 @@ hi link scalaConstructorSpecializer scalaConstructor
 
 let b:current_syntax = "scala"
 
-" you might like to put these lines in your .vimrc
-"
-" customize colors a little bit (should be a different file)
-" hi scalaNew gui=underline
-" hi scalaMethodCall gui=italic
-" hi scalaValName gui=underline
-" hi scalaVarName gui=underline
+" if rainbow parenthesis is there, use it
+"if exists("g:btm_rainbow_color") && g:btm_rainbow_color
+  cal rainbow_parentheses#activate()
+  cal rainbow_parentheses#load(0)
+  cal rainbow_parentheses#load(1)
+  cal rainbow_parentheses#load(2)
+"endif
