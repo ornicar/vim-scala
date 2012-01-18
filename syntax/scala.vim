@@ -181,11 +181,3 @@ hi link scalaConstructor Function
 hi link scalaConstructorSpecializer scalaConstructor
 
 let b:current_syntax = "scala"
-
-" if rainbow parenthesis is there, use it
-"if exists("g:btm_rainbow_color") && g:btm_rainbow_color
-  cal rainbow_parentheses#activate()
-  cal rainbow_parentheses#load(0)
-  cal rainbow_parentheses#load(1)
-  cal rainbow_parentheses#load(2)
-"endif
