@@ -151,7 +151,7 @@ hi link scalaString String
 hi link scalaChar String
 hi link scalaMultiLineString String
 hi link scalaStringEscape Special
-hi link scalaSymbol Special
+hi link scalaSymbol Type
 hi link scalaUnicode Special
 hi link scalaComment Comment
 hi link scalaLineComment Comment
