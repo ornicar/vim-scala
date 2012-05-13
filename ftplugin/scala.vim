@@ -8,8 +8,8 @@ setlocal shiftwidth=2
 setlocal softtabstop=2
 setlocal expandtab
 setlocal formatoptions=tcqr
-setlocal formatprg=~/.scripts/scalariform\ --forceOutput
-"
+setlocal formatprg=~/.scripts/scalariform\ --stdin
+
 " Operator notation: transforms a.b(c) to a b c
 nmap <buffer> <leader>s. f.r<space>f(ds(i <esc>
 
