@@ -10,6 +10,12 @@ setlocal expandtab
 setlocal formatoptions=tcqr
 setlocal formatprg=~/.scripts/scalariform\ --stdin
 
+" Compile and show errors in quickfix window
+setlocal makeprg=play\ -Dsbt.log.noformat=true\ compile
+setlocal errorformat=%E\ %#[error]\ %f:%l:\ %m,%C\ %#[error]\ %p^,%-C%.%#,%Z,
+  \%W\ %#[warn]\ %f:%l:\ %m,%C\ %#[warn]\ %p^,%-C%.%#,%Z,
+  \%-G%.%#
+
 " Operator notation: transforms a.b(c) to a b c
 nmap <buffer> <leader>s. f.r<space>f(ds(i <esc>
 
