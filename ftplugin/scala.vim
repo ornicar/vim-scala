@@ -11,7 +11,12 @@ setlocal formatoptions=tcqr
 setlocal formatprg=~/.scripts/scalariform\ --stdin
 
 " Compile and show errors in quickfix window
-setlocal makeprg=play\ -Dsbt.log.noformat=true\ compile
+if filereadable('conf/routes')
+  setlocal makeprg=play\ -Dsbt.log.noformat=true\ compile
+else
+  setlocal makeprg=sbt\ -Dsbt.log.noformat=true\ compile
+endif
+
 setlocal errorformat=%E\ %#[error]\ %f:%l:\ %m,%C\ %#[error]\ %p^,%-C%.%#,%Z,
   \%W\ %#[warn]\ %f:%l:\ %m,%C\ %#[warn]\ %p^,%-C%.%#,%Z,
   \%-G%.%#
