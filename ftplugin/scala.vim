@@ -23,7 +23,7 @@ setlocal errorformat=%E\ %#[error]\ %f:%l:\ %m,%C\ %#[error]\ %p^,%-C%.%#,%Z,
   \%-G%.%#
 
 " Compile and open quickfix window
-nmap <silent> <buffer> <leader>sm :make<cr>:copen<cr>
+nmap <silent> <buffer> <leader>sM :make<cr>:copen<cr>
 
 " Operator notation: transforms a.b(c) to a b c
 nmap <buffer> <leader>s. f.r<space>f(ds(i <esc>
@@ -32,4 +32,4 @@ nmap <buffer> <leader>s. f.r<space>f(ds(i <esc>
 nmap <buffer> <leader>s" ysi""lysi""
 
 " Format with scalariform then save
-nmap <buffer> <leader>i mygggqG'y:w<cr>
+nmap <buffer> <leader>i :nohl<cr>:w<cr>mygggqG'y
