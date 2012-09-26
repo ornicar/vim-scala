@@ -10,6 +10,7 @@ setlocal softtabstop=2
 setlocal expandtab
 setlocal formatoptions=tcqr
 setlocal formatprg=~/.scripts/scalariform\ --stdin
+setlocal commentstring=//%s
 
 " Compile and show errors in quickfix window
 if filereadable('conf/routes')
