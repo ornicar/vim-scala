@@ -13,7 +13,7 @@ setlocal commentstring=//%s
 
 " Compile and show errors in quickfix window
 if filereadable('conf/routes')
-  setlocal makeprg=play\ -Dsbt.log.noformat=true\ compile
+  setlocal makeprg=bin/play\ -Dsbt.log.noformat=true\ compile
 else
   setlocal makeprg=sbt\ -Dsbt.log.noformat=true\ compile
 endif
@@ -32,4 +32,4 @@ nmap <buffer> <leader>s. f.r<space>f(ds(i <esc>
 nmap <buffer> <leader>s" ysi""lysi""
 
 " Format with scalariform then save
-nmap <buffer> <leader>i :nohl<cr>:w<cr>mygggqG'y
+nmap <buffer> <leader>i :nohl<cr>mygggqG'y:w<cr>
