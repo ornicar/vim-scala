@@ -1,5 +1,8 @@
-au BufRead,BufNewFile *.scala set filetype=scala
-au BufNewFile,BufRead *.sbt set filetype=scala
+fun! s:DetectScala()
+    if getline(1) == '#!/usr/bin/env scala'
+        set filetype=scala
+    endif
+endfun
 
-" Use haml syntax for scaml
-au BufRead,BufNewFile *.scaml set filetype=haml
+au BufRead,BufNewFile *.scala,*.sbt set filetype=scala
+au BufRead,BufNewFile * call s:DetectScala()
