@@ -30,5 +30,5 @@ nmap <buffer> <leader>s. f.r<space>f(ds(i <esc>
 " Triple quotes: transforms "abc" to """abc"""
 nmap <buffer> <leader>s" ysi""lysi""
 
-" Format with scalariform then save
-nmap <buffer> <leader>i :nohl<cr>mygggqG'y:w<cr>
+" Sort imports, format with scalariform then save
+nmap <buffer> <leader>i :nohl<cr>mygggqG'y:SortScalaImports<cr>:w<cr>
