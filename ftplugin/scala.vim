@@ -3,7 +3,7 @@ setlocal shiftwidth=2
 setlocal softtabstop=2
 setlocal expandtab
 setlocal formatoptions=tcqr
-setlocal formatprg=~/.scripts/scalariform\ --stdin
+setlocal formatprg=~/scalariver/scalariver\ --url=http://localhost\:8098\ --stdin\ --stdout\ -f\ +rewriteArrowSymbols\ +alignSingleLineCaseStatements\ +compactControlReadability\ +doubleIndentClassDeclaration\ +rewriteArrowSymbols\ +preserveDanglingCloseParenthesis
 setlocal commentstring=//%s
 
 " Compile and show errors in quickfix window
@@ -30,5 +30,5 @@ nmap <buffer> <leader>s. f.r<space>f(ds(i <esc>
 " Triple quotes: transforms "abc" to """abc"""
 nmap <buffer> <leader>s" ysi""lysi""
 
-" Sort imports, format with scalariform then save
+" Sort imports, format with scalariver then save
 nmap <buffer> <leader>i :nohl<cr>mygggqG'y:SortScalaImports<cr>:w<cr>
