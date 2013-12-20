@@ -12,10 +12,16 @@ syn sync minlines=200 maxlines=1000
 syn keyword scalaKeyword catch do else final finally for forSome if
 syn keyword scalaKeyword match return throw try while yield
 syn keyword scalaKeyword class trait object extends with type nextgroup=scalaInstanceDeclaration skipwhite
-syn keyword scalaKeyword case nextgroup=scalaCaseFollowing skipwhite
+syn keyword scalaKeyword case nextgroup=scalaKeyword,scalaCaseFollowing skipwhite
 syn keyword scalaKeyword val nextgroup=scalaNameDefinition,scalaQuasiQuotes skipwhite
 syn keyword scalaKeyword def var nextgroup=scalaNameDefinition skipwhite
 hi link scalaKeyword Keyword
+
+syn match scalaSymbol /'[_A-Za-z0-9$]\+/
+hi link scalaSymbol Number
+
+syn match scalaChar /'.'/
+hi link scalaChar Character
 
 syn match scalaNameDefinition /\<[_A-Za-z0-9$]\+\>/ contained
 syn match scalaNameDefinition /`[^`]\+`/ contained
@@ -77,7 +83,7 @@ syn match scalaNumber "\<\d\+\%([eE][-+]\=\d\+\)\=[fFdD]\>"
 hi link scalaNumber Number
 
 syn region scalaSquareBrackets matchgroup=Type start="\[" end="\]" contains=scalaSpecial,scalaTypeParameter,scalaSquareBrackets,scalaTypeOperator
-syn match scalaTypeAnnotation /\%(:\s*\)\@<=[_\.A-Za-z0-9$]\+/
+syn match scalaTypeAnnotation /\%([^:]:\_s*\)\@<=[_\.A-Za-z0-9$]\+/
 syn match scalaTypeParameter /[_\.A-Za-z0-9$]\+/ contained
 syn match scalaTypeOperator /[=:<>]\+/ contained
 hi link scalaTypeAnnotation Type
