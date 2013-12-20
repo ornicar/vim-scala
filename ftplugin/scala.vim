@@ -7,24 +7,6 @@ setlocal formatprg=~/scalariver/scalariver\ --url=http://localhost\:8098\ --stdi
 " setlocal formatprg=~/scalariver/scalariver\ --url=http://river.scalex.org\ --stdin\ --stdout\ -f\ +rewriteArrowSymbols\ +alignSingleLineCaseStatements\ +compactControlReadability\ +doubleIndentClassDeclaration\ +preserveDanglingCloseParenthesis
 setlocal commentstring=//%s
 
-" Compile and show errors in quickfix window
-if filereadable('conf/routes')
-  setlocal makeprg=bin/play\ -Dsbt.log.noformat=true\ compile
-else
-  setlocal makeprg=sbt\ -Dsbt.log.noformat=true\ compile
-endif
-
-set efm=%E\ %#[error]\ %f:%l:\ %m,%C\ %#[error]\ %p^,%-C%.%#,%Z,
-       \%W\ %#[warn]\ %f:%l:\ %m,%C\ %#[warn]\ %p^,%-C%.%#,%Z,
-       \%-G%.%#
-
-setlocal errorformat=%E\ %#[error]\ %f:%l:\ %m,%C\ %#[error]\ %p^,%-C%.%#,%Z,
-  \%W\ %#[warn]\ %f:%l:\ %m,%C\ %#[warn]\ %p^,%-C%.%#,%Z,
-  \%-G%.%#
-
-" Compile and open quickfix window
-nmap <silent> <buffer> <leader>sM :make<cr>:copen<cr>
-
 " Operator notation: transforms a.b(c) to a b c
 nmap <buffer> <leader>s. f.r<space>f(ds(i <esc>
 
