@@ -3,6 +3,14 @@ import java.something.com
 
 package object SomeObject[A <: B] extends Implicits {
   type Booger[A] = A => Unit
+  type SomeType = A <: B :> C
+  type SomeOtherType = A => Thing
+
+  def hasFunctionType[A, B <: A, Z](f: A => B, g: (A, B) => Z): Unit = {
+    println("Something")
+  }
+
+  val f: (Int, String) => Unit = (i: Int, s: String) => println(s"$i -- $s")
 }
 
 object Test {
@@ -43,11 +51,16 @@ class ScalaClass(i: Int = 12, b: Trait[A, Trait[B, C]]) extends B with SomeTrait
   val thing = "A String with a \" in it"
   val intString = "A string with $stuff // and a comment in it"
   val intString = s"A string /* a comment and */ with $stuff and ${stuff} in it"
+  val intString = s"""A string /* a comment and */ with $stuff and ${stuff} in it"""
   val intFString = f"A string with $stuff and ${stuff} and ${eval this}%-2.2f and $stuff%2d in it"
+  val intFString = f"""A string with $stuff and ${stuff} and ${eval this}%-2.2f and $stuff%2d in it"""
   val otherThings = """|This is a string
                        |that spans multiple lines.
                        |""".stripMargin
   val aChar = 'a'
+  val anEscapedChar = '\\'
+  val anotherEscapedChar = '\n'
+  val aUnicodeChar = '\u00ab'
   val aSymbol = 'SomeSymbol
   def number = 0xAf903adeL
   def float = 1f
@@ -119,4 +132,12 @@ class ScalaClass(i: Int = 12, b: Trait[A, Trait[B, C]]) extends B with SomeTrait
   pq"return this $thing"
 
   def someFunc[A <: B, X =:= Y]
+
+  val soManyEscapes = "\\\"\u0031\n\b\r\f\t" // and a comment
+  val soManyEscapes = """\\\"\u0031\n\b\r\f\t""" // and a comment
+  val soManyEscapes = s"\\\"\u0031\n\b\r\f\t" // and a comment
+  val soManyEscapes = f"\\\"\u0031\n\b\r\f\t" // and a comment
+  val soManyEscapes = s"""\\\"\u0031\n\b\r\f\t""" // and a comment
+  val soManyEscapes = f"""\\\"\u0031\n\b\r\f\t""" // and a comment
+  val soManyEscapes = "\\\"\u0031\n\b\r\f\t" // and a comment
 }
