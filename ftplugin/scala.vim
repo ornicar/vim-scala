@@ -18,4 +18,4 @@ nmap <buffer> <leader>s. f.r<space>f(ds(i <esc>
 nmap <buffer> <leader>s" ysi""lysi""
 
 " Sort imports, format with scalariver then save
-nmap <buffer> <leader>i :nohl<cr>mygggqG'y:delm y<cr>:SortScalaImports<cr>:w<cr>
+nmap <buffer> <leader>i :nohl<cr>mygggqG'y:delm y<cr>:w<cr>:SortScalaImports<cr>:w<cr>
