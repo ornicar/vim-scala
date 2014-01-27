@@ -5,6 +5,7 @@ setlocal expandtab
 setlocal formatoptions=tcqr
 setlocal formatprg=~/scalariver/scalariver\ --url=http://localhost\:8098\ --stdin\ --stdout\ -f\ +rewriteArrowSymbols\ +alignSingleLineCaseStatements\ +compactControlReadability\ +doubleIndentClassDeclaration\ +preserveDanglingCloseParenthesis
 " setlocal formatprg=~/scalariver/scalariver\ --url=http://river.scalex.org\ --stdin\ --stdout\ -f\ +rewriteArrowSymbols\ +alignSingleLineCaseStatements\ +compactControlReadability\ +doubleIndentClassDeclaration\ +preserveDanglingCloseParenthesis
+
 setlocal commentstring=//%s
 let &l:include = '^\s*import'
 let &l:includeexpr = 'substitute(v:fname,"\\.","/","g")'
