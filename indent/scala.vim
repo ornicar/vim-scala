@@ -4,18 +4,18 @@
 " Modifications by : Derek Wyatt
 " Last Change: 2011 Mar 19 (Derek Wyatt)
 
-"if exists("b:did_indent")
-"  finish
-"endif
-"let b:did_indent = 1
+if exists("b:did_indent")
+  finish
+endif
+let b:did_indent = 1
 
+setlocal autoindent
 setlocal indentexpr=GetScalaIndent()
 setlocal indentkeys=0{,0},0),!^F,<>>,o,O,e,=case,<CR>
-setlocal autoindent
 
-"if exists("*GetScalaIndent")
-"    finish
-"endif
+if exists("*GetScalaIndent")
+  finish
+endif
 
 let s:defMatcher = '\%(\%(private\|protected\)\%(\[[^\]]*\]\)\?\s\+\|abstract\s\+\|override\s\+\)*\<def\>'
 let s:funcNameMatcher = '\w\+'
@@ -32,12 +32,12 @@ endfunction
 
 function! scala#GetLine(lnum)
   let line = substitute(getline(a:lnum), '//.*$', '', '')
-  let line = substitute(line, '"[^"]*"', '""', 'g')
+  let line = substitute(line, '"\(.\|\\"\)\{-}"', '""', 'g')
   return line
 endfunction
 
 function! scala#CountBrackets(line, openBracket, closedBracket)
-  let line = substitute(a:line, '"\(.\|\\"\)*"', '', 'g')
+  let line = substitute(a:line, '"\(.\|\\"\)\{-}"', '', 'g')
   let open = substitute(line, '[^' . a:openBracket . ']', '', 'g')
   let close = substitute(line, '[^' . a:closedBracket . ']', '', 'g')
   return strlen(open) - strlen(close)
@@ -98,7 +98,7 @@ function! scala#CurlyMatcher()
   if scala#CountParens(scala#GetLine(matchline)) < 0
     let savedpos = getpos('.')
     call setpos('.', [savedpos[0], matchline, 9999, savedpos[3]])
-    call searchpos('{', 'Wb')
+    call searchpos('{', 'Wbc')
     call searchpos(')', 'Wb')
     let [lnum, colnum] = searchpairpos('(', '', ')', 'Wbn')
     call setpos('.', savedpos)
@@ -129,7 +129,7 @@ function! scala#GetLineAndColumnThatMatchesBracket(openBracket, closedBracket)
     call searchpos(a:closedBracket . '\ze[^' . a:closedBracket . a:openBracket . ']*' . a:openBracket, 'W')
   else
     call setpos('.', [savedpos[0], savedpos[1], 9999, savedpos[3]])
-    call searchpos(a:closedBracket, 'Wb')
+    call searchpos(a:closedBracket, 'Wbc')
   endif
   let [lnum, colnum] = searchpairpos(a:openBracket, '', a:closedBracket, 'Wbn')
   call setpos('.', savedpos)
@@ -376,9 +376,18 @@ function! GetScalaIndent()
   let prevline = scala#GetLine(prevlnum)
   let curlnum = v:lnum
   let curline = scala#GetLine(curlnum)
+  if get(g:, 'scala_scaladoc_indent', 0)
+    let star_indent = 2
+  else
+    let star_indent = 1
+  end
 
   if prevline =~ '^\s*/\*\*'
-    return ind + 1
+    if prevline =~ '\*/\s*$'
+      return ind
+    else
+      return ind + star_indent
+    endif
   endif
 
   if curline =~ '^\s*\*'
@@ -532,10 +541,10 @@ function! GetScalaIndent()
   if prevline =~ '^\s*\*/'
    \ || prevline =~ '*/\s*$'
     call scala#ConditionalConfirm("18")
-    let ind = ind - 1
+    let ind = ind - star_indent
   endif
 
-  if scala#LineEndsInIncomplete(curline)
+  if scala#LineEndsInIncomplete(prevline)
     call scala#ConditionalConfirm("19")
     return ind
   endif
@@ -589,5 +598,6 @@ function! GetScalaIndent()
 
   return ind
 endfunction
-" vim:set ts=2 sts=2 sw=2:
+
+" vim:set sw=2 sts=2 ts=8 et:
 " vim600:fdm=marker fdl=1 fdc=0:

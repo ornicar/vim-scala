@@ -11,6 +11,11 @@ package object SomeObject[A <: B] extends Implicits {
   
   new Something#SomethingElse
 
+  val GET, HEAD, POST, PUT, DELETE, TRACE, OPTIONS, CONNECT, PATCH = Value
+
+  // Doesn't yet work
+  val GET, HEAD: Value, POST, PUT, DELETE, TRACE, OPTIONS, CONNECT, PATCH: Value = Value
+
   def x: Something#SomethingElse
 
   def hasFunctionType[A, B <: A, Z](f: A => B, g: (A, B) => Z): Unit = {
@@ -43,7 +48,7 @@ def x(): Unit = {
 
 class ScalaClass(i: Int = 12, b: Trait[A, Trait[B, C]]) extends B with SomeTrait[A, B[String], D] {
   /**
-   * I forgot comments! [[scala.Option]]
+   * I forgot comments! We spelcheck them. [[scala.Option]]
    *
    * {{{
    * scala> This is a REPL line
@@ -52,10 +57,10 @@ class ScalaClass(i: Int = 12, b: Trait[A, Trait[B, C]]) extends B with SomeTrait
    *
    * <li></li>
    *
-   * @param parameter Explanation of the parameter.
-   * @return 
+   * @param parameter Explanation of the parameter. Speling.
+   * @return TODO
    */
-  val thing = "A String" // this is a trailing comment
+  val thing = "A String" // this is a trailing comment, spelchecked too [TODO]
   val thing = "A String with a \" in it"
   val intString = "A string with $stuff // and a comment in it"
   val intString = s"A string /* a comment and */ with $stuff and ${stuff} in it"
@@ -65,6 +70,13 @@ class ScalaClass(i: Int = 12, b: Trait[A, Trait[B, C]]) extends B with SomeTrait
   val otherThings = """|This is a string
                        |that spans multiple lines.
                        |""".stripMargin
+  val intString = sql"select * from T where id = $id and name = ${name}"
+  val intString = sql"""
+    select * from T
+    where id = $id and name = ${s"$name Jr"} and age > ${age + 10}
+  """
+
+  val notImplemented = ???
 
   implicit val somethingImplicit = true
 
@@ -155,6 +167,7 @@ class ScalaClass(i: Int = 12, b: Trait[A, Trait[B, C]]) extends B with SomeTrait
   val something = s"""bar="foo""""
   val something = f"""bar="foo""""
   val something = """bar="foo""""
+  val something = s"Interpolatin' fancy expressions ${bar map (_.toString)}"
 
   def someFunc[A <: B, X =:= Y]
 

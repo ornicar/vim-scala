@@ -1,9 +1,20 @@
+" Vim plugin file
+" Language:             Scala
+" Maintainer:           Derek Wyatt
+" URL:                  https://github.com/derekwyatt/vim-scala
+" License:              Apache 2
+" ----------------------------------------------------------------------------
+
+if exists('g:loaded_scala') || &cp
+  finish
+endif
+let g:loaded_scala = 1
+
 "
 " Sort imports
 "
 " author: Leonard Ehrenfried <leonard.ehrenfried@gmail.com>
 "
-
 function! SortScalaImports()
   let save_cursor = getpos(".")
 
@@ -71,14 +82,18 @@ function! s:sortAcrossGroups()
   call cursor(first_line, 0)
   let to_delete = last_line - first_line
 
-  execute 'd'to_delete
+  if to_delete > 0
+    execute 'd'to_delete
+  endif
 
   call s:sortAndPrint(first_party_imports)
   call s:sortAndPrint(third_party_imports)
   call s:sortAndPrint(java_scala_imports)
 
-  " remove extra blank line at top
-  execute 'delete'
+  if first_line != -1
+    " remove extra blank line at top
+    execute 'delete'
+  endif
 
   call cursor(last_line + 2, 0)
   if empty(getline(line(".")))
@@ -130,3 +145,5 @@ function! s:sortIgnoreCase(i1, i2)
 endfunction
 
 command! SortScalaImports call SortScalaImports()
+
+" vim:set sw=2 sts=2 ts=8 et:
