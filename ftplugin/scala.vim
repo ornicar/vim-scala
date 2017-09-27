@@ -157,7 +157,7 @@ setlocal shiftwidth=2
 setlocal softtabstop=2
 setlocal expandtab
 setlocal formatoptions=tcqr
-setlocal formatprg=~/scalariver/scalariver\ --url=http://localhost\:8098\ --stdin\ --stdout\ -f\ +compactControlReadability\ +doubleIndentClassDeclaration\ --danglingCloseParenthesis=Prevent
+setlocal formatprg=~/scalariver/scalariver\ --url=http://localhost\:8098\ --stdin\ --stdout\ -f
 " setlocal formatprg=~/scalariver/scalariver\ --url=http://localhost\:8098\ --stdin\ --stdout\ -f\ +alignSingleLineCaseStatements\ +compactControlReadability\ +doubleIndentClassDeclaration\ +preserveDanglingCloseParenthesis\ +spacesAroundMultiImports\ --danglingCloseParenthesis=Preserve
 " setlocal formatprg=~/scalariver/scalariver\ --url=http://localhost\:8098\ --stdin\ --stdout\ -f\ +rewriteArrowSymbols\ +alignSingleLineCaseStatements\ +compactControlReadability\ +doubleIndentClassDeclaration\ +preserveDanglingCloseParenthesis
 " setlocal formatprg=~/scalariver/scalariver\ --url=http://river.scalex.org\ --stdin\ --stdout\ -f\ +rewriteArrowSymbols\ +alignSingleLineCaseStatements\ +compactControlReadability\ +doubleIndentClassDeclaration\ +preserveDanglingCloseParenthesis
